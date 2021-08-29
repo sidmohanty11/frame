@@ -1,21 +1,20 @@
 import { Eventing } from "./Eventing";
 
-interface UserProps {
+interface TodoProps {
   id?: string | number;
-  name?: string;
-  email?: string;
-  age?: number;
+  task?: string;
+  category?: string;
 }
 
-export class User {
+export class Todo {
   public events: Eventing = new Eventing();
-  constructor(private data: UserProps) {};
+  constructor(private data: TodoProps) {};
 
   get(propName: string): (number | string) {
     return this.data[propName];
   }
 
-  set(update: UserProps):void {
+  set(update: TodoProps):void {
     Object.assign(this.data, update);
   }
 }
