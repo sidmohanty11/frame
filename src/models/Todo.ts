@@ -1,4 +1,5 @@
 import { Eventing } from "./Eventing";
+import { Sync } from "./Sync";
 
 interface TodoProps {
   id?: string | number;
@@ -8,13 +9,7 @@ interface TodoProps {
 
 export class Todo {
   public events: Eventing = new Eventing();
+  public sync: Sync<TodoProps> = new Sync<TodoProps>('http://localhost:3000')
+
   constructor(private data: TodoProps) {};
-
-  get(propName: string): (number | string) {
-    return this.data[propName];
-  }
-
-  set(update: TodoProps):void {
-    Object.assign(this.data, update);
-  }
 }
