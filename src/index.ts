@@ -1,3 +1,7 @@
 import { User } from "./models/User";
 
-const user = new User({ name: "ram", age: 10 });
+const user = User.create({
+  id: 1,
+});
+
+user.fetch();

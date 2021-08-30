@@ -1,6 +1,7 @@
-import { CallbackFn, Eventing } from "./Eventing";
+import { Attributes } from "./Attributes";
+import { Eventing } from "./Eventing";
 import { Sync } from "./Sync";
-import { Attributes } from "./Attributes"
+import { Model } from "./Model";
 
 export interface UserProps {
   id?: string | number;
@@ -11,24 +12,16 @@ export interface UserProps {
 
 const ROOT_URL = 'http://localhost:3000/users';
 
-export class User {
-  public events: Eventing = new Eventing();
-  public sync: Sync<UserProps> = new Sync<UserProps>(ROOT_URL);
-  public attributes: Attributes<UserProps>;
-
-  constructor(attrs: UserProps) {
-    this.attributes = new Attributes<UserProps>(attrs);
-  };
-
-  get on() {
-    return this.events.on;
+export class User extends Model<UserProps> {
+  static create(attrs: UserProps): User {
+    return new User(
+      new Attributes<UserProps>(attrs),
+      new Eventing(),
+      new Sync<UserProps>(ROOT_URL)
+    ); 
   }
 
-  get trigger() {
-    return this.events.trigger;
-  }
-
-  get get() {
-    return this.attributes.get;
+  isAdmin(): boolean {
+    return this.get('id') === 1;
   }
 }
