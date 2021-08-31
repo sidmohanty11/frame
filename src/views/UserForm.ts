@@ -1,16 +1,7 @@
-import { User } from "../models/User";
+import { User, UserProps } from "../models/User";
+import { View } from "./View";
 
-export class UserForm {
-  constructor(public parent: Element, public model: User) {
-    this.bindEffect();
-  }
-
-  bindEffect(): void {
-    this.model.on('change', () => {
-      this.render();
-    });
-  }
-
+export class UserForm extends View<User, UserProps> {
   eventsMap(): { [key: string]: () => void } {
     return {
       'click:.set-name': this.onSetNameClick,
@@ -50,17 +41,6 @@ export class UserForm {
   onButtonClick = (): void => {
   }
 
-  bind(fragment: DocumentFragment): void {
-    const eventsMap = this.eventsMap();
-    for (let eventKey in eventsMap) {
-      const [eventName, selector] = eventKey.split(':');
-
-      fragment.querySelectorAll(selector).forEach((element) => {
-        element.addEventListener(eventName, eventsMap[eventKey]);
-      })
-    }
-  }
-
   template(): string {
     return `
     <div class="card" style="margin: auto">
@@ -83,16 +63,5 @@ export class UserForm {
       <button class="save">Save!</button>
     </div>
     `;
-  }
-
-  render(): void {
-    this.parent.innerHTML = '';
-
-    const templateEl = document.createElement('template');
-    templateEl.innerHTML = this.template();
-
-    this.bind(templateEl.content);
-
-    this.parent.append(templateEl.content);
   }
 }
