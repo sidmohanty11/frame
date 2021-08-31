@@ -47,17 +47,14 @@ export class UserForm extends View<User, UserProps> {
     <div class="card" style="margin: auto">
       <h1>User Form</h1>
       <div>
-        User Name: ${this.model.get('name')}
         <input type="text" id="name" placeholder="name" />
         <button class="set-name">Update Name</button>
       </div>
       <div>
-        User Email: ${this.model.get('email')}
         <input type="email" id="email" placeholder="email" />
         <button class="set-email">Update Email</button>
       </div>
       <div>
-        User Age: ${this.model.get('age')}
         <input type="number" id="age" placeholder="age" />
         <button class="set-age">Update Age</button>
       </div>

@@ -2,9 +2,9 @@
   "users": [
     {
       "id": 1,
-      "name": "Sidharth",
-      "age": 18,
-      "email": "sid@sid.com"
+      "name": "sidharth",
+      "age": 23,
+      "email": "sid@sid"
     },
     {
       "name": "ram",
