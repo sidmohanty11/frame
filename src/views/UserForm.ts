@@ -7,7 +7,7 @@ export class UserForm extends View<User, UserProps> {
       'click:.set-name': this.onSetNameClick,
       'click:.set-age': this.onSetAgeClick,
       'click:.set-email': this.onSetEmailClick,
-      'click:.save': this.onButtonClick,
+      'click:.save': this.onSaveClick,
     }
   }
 
@@ -38,7 +38,8 @@ export class UserForm extends View<User, UserProps> {
     }
   }
 
-  onButtonClick = (): void => {
+  onSaveClick = (): void => {
+    this.model.save();
   }
 
   template(): string {
